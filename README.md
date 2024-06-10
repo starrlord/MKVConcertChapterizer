@@ -2,7 +2,7 @@
 
 ## Description
 
-MKV Song Chapterizer is a Python application that identifies songs in an MKV video file, creates chapters based on the detected songs, and adds these chapters to the MKV file. Each chapter is based on a 15-second audio chunk sampled every 6 minutes from the video, and the song title is used as the chapter name.
+MKV Song Chapterizer is a Python application that identifies songs in an MKV video file, creates chapters based on the detected songs, and adds these chapters to the MKV file. Each chapter is based on a 15-second audio chunk sampled every 5 minutes from the video, and the song title is used as the chapter name.
 
 ## Requirements
 
