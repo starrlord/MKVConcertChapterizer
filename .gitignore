@@ -1,0 +1,7 @@
+.venv
+Include
+Lib
+Scripts
+venv
+pyvenv.cfg
+mkvpropedit.exe
