@@ -2,7 +2,7 @@
 
 ## Description
 
-MKV Song Chapterizer is a Python application that identifies songs in an MKV video file, creates chapters based on the detected songs, and adds these chapters to the MKV file. Each chapter is based on a 15-second audio chunk sampled every 5 minutes from the video, and the song title is used as the chapter name.
+MKV Song Chapterizer is a Python application that identifies songs in an MKV video files, creates chapters based on the detected songs, and adds these chapters to the video file. The application processes audio chunks sampled from the video and uses the AudD API to identify the songs. Each chapter is named after the detected song title.
 
 ## Requirements
 
@@ -74,14 +74,17 @@ This application uses the [AudD API](https://audd.io) to identify songs. You wil
     python script.py input_video.mkv output_chapters.xml
     ```
 
-    - `input_video.mkv`: Path to the MKV video file.
+    - `input_video.mkv`: Path to the video file (MKV or MP4 format).
     - `output_chapters.xml`: Path to the temporary output XML file for chapters.
+    - `--output-only`: (Optional) Only output the XML content without writing to the file.
+    - `--clip-interval`: (Optional) Interval in minutes to sample audio chunks (1-15 minutes, default is 5 minutes).
+    - `--chunk-duration`: (Optional) Duration of each audio chunk in seconds (less than 20 seconds, default is 15 seconds).
 
 ## Notes
 
 - Ensure that the MKVToolNix binaries (`mkvpropedit`) are in your system's PATH.
 - This script extracts audio from the video file to a temporary file, identifies songs, generates an XML file with chapters, and then updates the MKV file with these chapters.
-- The script uses a 15-second audio chunk every 5 minutes to identify the song. This interval can be adjusted if needed.
+- The script allows customizing the interval at which audio chunks are sampled and the duration of each chunk.
 
 ## Example
 
@@ -91,7 +94,7 @@ A video file with multiple songs.
 
 ### Output
 
-An MKV file with chapters added at 5-minute intervals, each chapter named after the detected song title.
+An MKV file with chapters added at specified intervals, each chapter named after the detected song title.
 
 ```xml
 <?xml version='1.0' encoding='utf-8'?>
@@ -104,7 +107,7 @@ An MKV file with chapters added at 5-minute intervals, each chapter named after 
             </ChapterDisplay>
         </ChapterAtom>
         <ChapterAtom>
-            <ChapterTimeStart>00:5:00.000</ChapterTimeStart>
+            <ChapterTimeStart>00:05:00.000</ChapterTimeStart>
             <ChapterDisplay>
                 <ChapterString>Deal</ChapterString>
             </ChapterDisplay>
